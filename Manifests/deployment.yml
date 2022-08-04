@@ -1,0 +1,29 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: weighttrackerimg 
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: weighttrackerimg
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: weighttrackerimg 
+    spec:
+      containers:
+        - name: weighttrackerimg 
+          image: weighttrackerapp.azurecr.io/weighttrackerimg
+          ports:
+          - containerPort: 80
+          envFrom:
+          - secretRef:
+              name: secret
