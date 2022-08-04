@@ -49,3 +49,6 @@ No modules.
 | <a name="output_kube_config"></a> [kube\_config](#output\_kube\_config) | n/a |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
 <!-- END_TF_DOCS -->
+
+## Estimated Costs: <br />
+<img src=https://i.postimg.cc/nrGZQKj0/infracost.jpg>
