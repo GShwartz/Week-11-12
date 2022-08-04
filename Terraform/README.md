@@ -1,5 +1,9 @@
 <img src=https://res.cloudinary.com/practicaldev/image/fetch/s--6ztCg3pQ--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nr00jj26rkboeu26mp2j.png><br />
 
+### Usage
+    - terraform plan -out <filename.tfplan> --var-file "deploy.tfvars"
+    - terraform apply -var-file "deploy.tfvars"
+    
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
