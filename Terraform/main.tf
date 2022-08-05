@@ -3,8 +3,18 @@ resource "azurerm_resource_group" "rg" {
   location  = var.location
 }
 
+resource "azurerm_container_registry" "acr" {
+    location            = var.location
+    name                = "WeightTrackerACR"
+    resource_group_name = var.resource_group_name
+    sku                 = "Basic"
+    admin_enabled = false
+}
+
 resource "azurerm_kubernetes_cluster" "k8s" {
-    depends_on = [azurerm_resource_group.rg]
+    depends_on = [
+        azurerm_resource_group.rg,
+        azurerm_container_registry.acr]
 
     name                = var.cluster_name
     location            = azurerm_resource_group.rg.location
@@ -12,10 +22,10 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     dns_prefix          = var.dns_prefix
 
     linux_profile {
-        admin_username = "gazurestudent"
+        admin_username = var.admin_username
 
         ssh_key {
-            key_data = ""
+            key_data = file(var.ssh_public_key)
         }
     }
 

@@ -29,3 +29,9 @@ variable aks_service_principal_app_id {
 variable aks_service_principal_client_secret {
   description = "aks_service_principal_client_secret"
 }
+
+variable "admin_username" {
+  description = "admin_username"
+}
+
+variable "ssh_public_key" {}
