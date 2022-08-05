@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: weighttrackerimg
+  name: weighttracker
 spec:
   selector:
-    app: weighttrackerimg
+    app: weighttracker
   ports:
     - port: 5678 # Default port for image
       targetPort: 80

@@ -1,13 +1,13 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: weighttrackerimg 
+  name: weighttracker 
 spec:
   replicas: 3
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: weighttrackerimg
+      app: weighttracker
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
@@ -17,11 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        app: weighttrackerimg 
+        app: weighttracker 
     spec:
       containers:
-        - name: weighttrackerimg 
-          image: weighttrackerapp.azurecr.io/weighttrackerimg
+        - name: weighttracker
+          image: weighttrackeracr.azurecr.io/weighttracker
           ports:
           - containerPort: 80
           envFrom:
