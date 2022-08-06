@@ -3,18 +3,8 @@ resource "azurerm_resource_group" "rg" {
   location  = var.location
 }
 
-resource "azurerm_container_registry" "acr" {
-    location            = var.location
-    name                = "WeightTrackerACR"
-    resource_group_name = var.resource_group_name
-    sku                 = "Basic"
-    admin_enabled = false
-}
-
 resource "azurerm_kubernetes_cluster" "k8s" {
-    depends_on = [
-        azurerm_resource_group.rg,
-        azurerm_container_registry.acr]
+    depends_on = [azurerm_resource_group.rg]
 
     name                = var.cluster_name
     location            = azurerm_resource_group.rg.location
@@ -37,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     default_node_pool {
         name            = "agentpool"
         node_count      = var.agent_count
-        vm_size         = "Standard_B2ms"
+        vm_size         = "Standard_B2s"
     }
 
     network_profile {
@@ -46,6 +36,6 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 
     tags = {
-        Environment = "Staging"
+        Environment = var.environment
     }
 }
